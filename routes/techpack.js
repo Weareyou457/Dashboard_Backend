@@ -19,8 +19,7 @@ router.post("/add", upload.single("pdf"), async (req, res) => {
             })
         }
     } catch (error) {
-        // Send error response if there's an error
-        res.status(500).json(error);
+        res.status(500).json({status:false,message:"Error"});
     }
 });
 

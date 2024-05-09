@@ -1,27 +1,29 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const TechPackSchema = new mongoose.Schema({
-    style: {
+
+const TechPackSchema = new Schema({
+    Style: {
         type: String,
-        max: 50,
-        required: true,
+        unique: true, // Ensure uniqueness
+        maxlength: 50, // Maximum length
+        required: true // Required field
     },
     category: {
         type: String,
-        max: 50,
-        required: true,
-
+        maxlength: 50,
+        required: true
     },
     collectionss: {
         type: String,
-        max: 50,
-        required: true,
-
+        maxlength: 50,
+        required: true
     },
     pdf: {
-        type:String,
-        
-      }
-})
+        type: String
+    }
+});
 
-module.exports = mongoose.model("techpack", TechPackSchema)
+// Create a unique index on the Style field
+TechPackSchema.index({ Style: 1 }, { unique: true });
+
+module.exports = mongoose.model("TechPack", TechPackSchema);
